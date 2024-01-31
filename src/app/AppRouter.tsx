@@ -1,36 +1,42 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { UsersPage } from "@/pages/UsersPage";
+import { AlbumsPage } from "@/pages/AlbumsPage";
+import { PostsPage } from "@/pages/PostsPage";
+import { AlbumDetailsPage } from "@/pages/AlbumDetailsPage";
+import { PostDetailsPage } from "@/pages/PostDetailsPage";
+import { NotFoundPage } from "@/pages/NotFoundPage";
 import {
   getAlbumDetailsPath,
   getAlbumsPath,
   getPostDetailsPath,
   getPostsPath,
-  RoutePaths,
+  RoutePath,
 } from "@/shared/config/routePaths";
 
 const router = createBrowserRouter([
   {
-    path: RoutePaths.Users,
-    element: <div>Users List</div>,
+    path: RoutePath.Users,
+    element: <UsersPage />,
   },
   {
     path: getAlbumsPath(":userId"),
-    element: <div>User Albums</div>,
+    element: <AlbumsPage />,
   },
   {
     path: getPostsPath(":userId"),
-    element: <div>User Posts</div>,
+    element: <PostsPage />,
   },
   {
     path: getAlbumDetailsPath(":albumId"),
-    element: <div>Album details</div>,
+    element: <AlbumDetailsPage />,
   },
   {
     path: getPostDetailsPath(":postId"),
-    element: <div>Post details</div>,
+    element: <PostDetailsPage />,
   },
   {
-    path: RoutePaths.NotFound,
-    element: <div>Not found</div>,
+    path: RoutePath.NotFound,
+    element: <NotFoundPage />,
   },
 ]);
 
