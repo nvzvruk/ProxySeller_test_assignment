@@ -24,7 +24,7 @@ export function Table<TRow>(props: TableProps<TRow>) {
   ));
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto rounded shadow-md p-2 border">
       <table className="table-auto w-full">
         <thead className="font-semibold uppercase text-xs text-left text-gray-400">
           <tr>{tableHeads}</tr>

@@ -3,14 +3,14 @@ import { Table, TableData } from "@/shared/components/Table";
 import { AvatarPlaceholder } from "@/shared/components/AvatarPlaceholder";
 import { AppLink } from "@/shared/components/AppLink";
 import { Loader } from "@/shared/components/Loader";
-import { UserTableData } from "./types";
+import { UserTableData } from "../types";
 
 interface UsersTableProps {
   users: UserTableData[] | null;
   isLoading: boolean;
 }
 
-const headers = ["", "username", "email", "company", "actions"];
+const headers = ["avatar", "username", "email", "company", "actions"];
 
 const renderUserRow = (user: UserTableData) => {
   return (
