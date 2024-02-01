@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Table, TableData } from "@/shared/components/Table";
 import { AppLink } from "@/shared/components/AppLink";
 import { Loader } from "@/shared/components/Loader";
-import { Post } from "./types";
+import { Post } from "../types";
 
 interface PostsTableProps {
   posts: Post[] | null;

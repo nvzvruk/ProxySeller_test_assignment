@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { PostsTable, usePostsState } from "@/entities/Post";
+import { PostsTable, usePostsTableState } from "@/entities/Post";
 import { PageHeading } from "@/shared/components/PageHeading";
 import { PageLayout } from "@/shared/components/PageLayout";
 
 export const PostsPage = () => {
   const { userId } = useParams();
-  const { isLoading, posts, fetchPostsByUserId } = usePostsState();
+  const { isLoading, posts, fetchPostsByUserId } = usePostsTableState();
 
   useEffect(() => {
     if (userId) {
@@ -16,7 +16,7 @@ export const PostsPage = () => {
 
   return (
     <PageLayout>
-      <PageHeading>User {userId} posts</PageHeading>
+      <PageHeading>User {userId} Posts</PageHeading>
       <PostsTable posts={posts} isLoading={isLoading} />
     </PageLayout>
   );

@@ -1,14 +1,14 @@
 import { create } from "zustand";
-import { Post } from "./types";
-import { transformPostToTableData } from "./utils";
+import { Post } from "../types";
+import { transformPostToTableData } from "../utils";
 
-interface PostsState {
+interface PostsTableState {
   posts: null | Post[];
   isLoading: boolean;
   fetchPostsByUserId: (userId: string) => Promise<void>;
 }
 
-export const usePostsState = create<PostsState>((set) => ({
+export const usePostsTableState = create<PostsTableState>((set) => ({
   posts: null,
   isLoading: false,
   fetchPostsByUserId: async (userId) => {

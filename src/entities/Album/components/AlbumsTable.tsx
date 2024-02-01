@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Table, TableData } from "@/shared/components/Table";
 import { AppLink } from "@/shared/components/AppLink";
 import { Loader } from "@/shared/components/Loader";
-import { Album } from "./types";
+import { Album } from "../types";
 
 interface AlbumsTableProps {
   albums: Album[] | null;

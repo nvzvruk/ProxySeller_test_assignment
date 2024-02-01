@@ -1,13 +1,13 @@
 import { create } from "zustand";
-import { Album } from "./types";
+import { Album } from "../types";
 
-interface AlbumsState {
+interface AlbumsTableState {
   albums: null | Album[];
   isLoading: boolean;
-  fetchAlbumsByUserId: (id: string) => Promise<void>;
+  fetchAlbumsByUserId: (userId: string) => Promise<void>;
 }
 
-export const useAlbumsState = create<AlbumsState>((set) => ({
+export const useAlbumsTableState = create<AlbumsTableState>((set) => ({
   albums: null,
   isLoading: false,
   fetchAlbumsByUserId: async (userId: string) => {
