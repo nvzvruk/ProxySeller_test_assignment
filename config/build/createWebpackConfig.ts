@@ -20,7 +20,7 @@ export function createWebpackConfig({
     output: {
       filename: "[contenthash].js",
       path: paths.output,
-      publicPath: "",
+      publicPath: "/",
       clean: true,
     },
   };
