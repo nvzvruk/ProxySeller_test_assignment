@@ -6,7 +6,7 @@ import { PageHeading } from "@/shared/components/PageHeading";
 
 export const AlbumDetailsPage = () => {
   const { albumId } = useParams();
-  const { album, isLoading, fetchAlbum } = useAlbumDetailsState();
+  const { album, photos, isLoading, fetchAlbum } = useAlbumDetailsState();
 
   useEffect(() => {
     if (albumId) {
@@ -17,7 +17,7 @@ export const AlbumDetailsPage = () => {
   return (
     <PageLayout>
       <PageHeading>Album {albumId}</PageHeading>
-      <AlbumDetails album={album} isLoading={isLoading} />
+      <AlbumDetails album={album} isLoading={isLoading} photos={photos} />
     </PageLayout>
   );
 };
