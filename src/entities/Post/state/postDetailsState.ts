@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { apiUrl } from "@/shared/config/api";
 import { Post } from "../types";
 
 interface PostDetailsState {
@@ -13,9 +14,7 @@ export const usePostDetailsState = create<PostDetailsState>((set) => ({
   fetchPost: async (postId) => {
     try {
       set({ isLoading: true });
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${postId}`,
-      );
+      const response = await fetch(`${apiUrl}/posts/${postId}`);
       const post = await response.json();
       set({ post, isLoading: false });
     } catch (error) {

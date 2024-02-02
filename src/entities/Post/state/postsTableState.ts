@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { apiUrl } from "@/shared/config/api";
 import { Post } from "../types";
 import { transformPostToTableData } from "../utils";
 
@@ -14,9 +15,7 @@ export const usePostsTableState = create<PostsTableState>((set) => ({
   fetchPostsByUserId: async (userId) => {
     try {
       set({ isLoading: true });
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/users/${userId}/posts`,
-      );
+      const response = await fetch(`${apiUrl}/users/${userId}/posts`);
       const data = await response.json();
       const posts = data.map(transformPostToTableData);
       set({ posts, isLoading: false });

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { apiUrl } from "@/shared/config/api";
 import { Album } from "../types";
 
 interface AlbumDetailsState {
@@ -13,9 +14,7 @@ export const useAlbumDetailsState = create<AlbumDetailsState>((set) => ({
   fetchAlbum: async (albumId: string) => {
     try {
       set({ isLoading: true });
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/albums/${albumId}`,
-      );
+      const response = await fetch(`${apiUrl}/albums/${albumId}`);
       const album = await response.json();
       set({ album, isLoading: false });
     } catch (error) {

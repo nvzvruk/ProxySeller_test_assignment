@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { apiUrl } from "@/shared/config/api";
 import { UserTableData } from "./types";
 import { transformUserToTableData } from "./utils";
 
@@ -14,9 +15,7 @@ export const useUsersState = create<UsersState>((set) => ({
   fetchUsers: async () => {
     try {
       set({ isLoading: true });
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users",
-      );
+      const response = await fetch(`${apiUrl}/users`);
       const data = await response.json();
       const users = data.map(transformUserToTableData);
       set({ users, isLoading: false });
