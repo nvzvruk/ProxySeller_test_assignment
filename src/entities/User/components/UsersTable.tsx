@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { memo } from "react";
 import { Table, TableData } from "@/shared/components/Table";
 import { AvatarPlaceholder } from "@/shared/components/AvatarPlaceholder";
 import { AppLink } from "@/shared/components/AppLink";
@@ -31,8 +31,8 @@ const renderUserRow = (user: UserTableData) => {
   );
 };
 
-export const UsersTable: FC<UsersTableProps> = ({ users, isLoading }) => {
+export const UsersTable = memo<UsersTableProps>(({ users, isLoading }) => {
   if (isLoading) return <Loader />;
   if (users)
     return <Table headers={headers} rows={users} renderRow={renderUserRow} />;
-};
+});

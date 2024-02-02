@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { memo } from "react";
 import { Album } from "@/entities/Album";
 import { Loader } from "@/shared/components/Loader";
 
@@ -7,7 +7,7 @@ interface AlbumDetailsProps {
   isLoading: boolean;
 }
 
-export const AlbumDetails: FC<AlbumDetailsProps> = ({ album, isLoading }) => {
+export const AlbumDetails = memo<AlbumDetailsProps>(({ album, isLoading }) => {
   if (isLoading) return <Loader />;
   if (album)
     return (
@@ -15,4 +15,4 @@ export const AlbumDetails: FC<AlbumDetailsProps> = ({ album, isLoading }) => {
         <h2 className="font-semibold">{album.title}</h2>
       </>
     );
-};
+});

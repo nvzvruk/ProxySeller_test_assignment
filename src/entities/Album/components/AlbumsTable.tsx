@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { memo } from "react";
 import { Table, TableData } from "@/shared/components/Table";
 import { AppLink } from "@/shared/components/AppLink";
 import { Loader } from "@/shared/components/Loader";
@@ -23,8 +23,8 @@ const renderAlbumRow = (album: Album) => {
   );
 };
 
-export const AlbumsTable: FC<AlbumsTableProps> = ({ albums, isLoading }) => {
+export const AlbumsTable = memo<AlbumsTableProps>(({ albums, isLoading }) => {
   if (isLoading) return <Loader />;
   if (albums)
     return <Table headers={headers} rows={albums} renderRow={renderAlbumRow} />;
-};
+});

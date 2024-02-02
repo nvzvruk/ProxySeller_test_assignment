@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { memo, useState } from "react";
 
 interface ToggleButtonProps {
   value: string;
@@ -6,7 +6,7 @@ interface ToggleButtonProps {
   onToggle: (selectedOption: string) => void;
 }
 
-const ToggleButton: FC<ToggleButtonProps> = ({ options, onToggle, value }) => {
+const ToggleButton = memo<ToggleButtonProps>(({ options, onToggle, value }) => {
   const defaultActiveIndex = options.indexOf(value);
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
 
@@ -32,6 +32,6 @@ const ToggleButton: FC<ToggleButtonProps> = ({ options, onToggle, value }) => {
       ))}
     </div>
   );
-};
+});
 
 export default ToggleButton;

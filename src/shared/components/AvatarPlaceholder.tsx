@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import { memo } from "react";
 
 interface AvatarPlaceholderProps {
   name: string;
 }
 
-export const AvatarPlaceholder: FC<AvatarPlaceholderProps> = ({ name }) => {
+export const AvatarPlaceholder = memo<AvatarPlaceholderProps>(({ name }) => {
   // Function to extract initials from the name
   const getInitials = (name: string) => {
     const nameArray = name.split(" ");
@@ -16,4 +16,4 @@ export const AvatarPlaceholder: FC<AvatarPlaceholderProps> = ({ name }) => {
       <span className="text-md font-semibold">{getInitials(name)}</span>
     </div>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { memo } from "react";
 import { Table, TableData } from "@/shared/components/Table";
 import { AppLink } from "@/shared/components/AppLink";
 import { Loader } from "@/shared/components/Loader";
@@ -24,8 +24,8 @@ const renderPostRow = (post: Post) => {
   );
 };
 
-export const PostsTable: FC<PostsTableProps> = ({ posts, isLoading }) => {
+export const PostsTable = memo<PostsTableProps>(({ posts, isLoading }) => {
   if (isLoading) return <Loader />;
   if (posts)
     return <Table headers={headers} rows={posts} renderRow={renderPostRow} />;
-};
+});

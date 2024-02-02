@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { memo } from "react";
 import { Loader } from "@/shared/components/Loader";
 import { Post } from "../types";
 
@@ -7,7 +7,7 @@ interface PostDetailsProps {
   isLoading: boolean;
 }
 
-export const PostDetails: FC<PostDetailsProps> = ({ post, isLoading }) => {
+export const PostDetails = memo<PostDetailsProps>(({ post, isLoading }) => {
   if (isLoading) return <Loader />;
   if (post)
     return (
@@ -16,4 +16,4 @@ export const PostDetails: FC<PostDetailsProps> = ({ post, isLoading }) => {
         <p>{post.body}</p>
       </>
     );
-};
+});
