@@ -6,7 +6,7 @@ import { PageHeading } from "@/shared/components/PageHeading";
 
 export const PostDetailsPage = () => {
   const { postId } = useParams();
-  const { post, isLoading, fetchPost } = usePostDetailsState();
+  const { post, comments, isLoading, fetchPost } = usePostDetailsState();
 
   useEffect(() => {
     if (postId) {
@@ -17,7 +17,7 @@ export const PostDetailsPage = () => {
   return (
     <PageLayout>
       <PageHeading>Post {postId}</PageHeading>
-      <PostDetails post={post} isLoading={isLoading} />
+      <PostDetails post={post} isLoading={isLoading} comments={comments} />
     </PageLayout>
   );
 };
