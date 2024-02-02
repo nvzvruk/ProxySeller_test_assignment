@@ -1,8 +1,4 @@
-import { type FC } from "react";
-
-interface HeaderProps {}
-
-export const Header: FC<HeaderProps> = () => {
+export const Header = () => {
   return (
     <header
       id="pageHeading"
