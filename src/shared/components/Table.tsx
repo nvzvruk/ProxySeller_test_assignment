@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { FC, ReactNode, TableHTMLAttributes } from "react";
 
 interface TableProps<TRow> {
   headers: string[];
@@ -6,8 +6,16 @@ interface TableProps<TRow> {
   renderRow: (row: TRow) => ReactNode;
 }
 
-export const TableData = ({ children }: { children: ReactNode }) => (
-  <td className="p-2 whitespace-nowrap">{children}</td>
+interface TableDataProps extends TableHTMLAttributes<HTMLTableCellElement> {
+  children: ReactNode;
+  // TODO find out why colSpan isn't included in TableHTMLAttributes<HTMLTableCellElement>
+  colSpan?: number;
+}
+
+export const TableData: FC<TableDataProps> = ({ children, ...props }) => (
+  <td className="p-2 whitespace-nowrap" {...props}>
+    {children}
+  </td>
 );
 
 export function Table<TRow>(props: TableProps<TRow>) {
@@ -19,9 +27,20 @@ export function Table<TRow>(props: TableProps<TRow>) {
     </th>
   ));
 
-  const tableRows = rows.map((row) => (
-    <tr key={JSON.stringify(row)}>{renderRow(row)}</tr>
-  ));
+  const tableRows =
+    rows.length > 0 ? (
+      rows.map((row) => <tr key={JSON.stringify(row)}>{renderRow(row)}</tr>)
+    ) : (
+      <tr>
+        <TableData
+          align="center"
+          colSpan={headers.length}
+          className="font-semibold text-lg text-gray-400 p-6"
+        >
+          Table is empty
+        </TableData>
+      </tr>
+    );
 
   return (
     <div className="overflow-x-auto rounded shadow-md p-2 border">

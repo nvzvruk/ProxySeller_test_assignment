@@ -3,29 +3,33 @@ import { useSearchParams } from "react-router-dom";
 import { UsersTable, SearchUsers, useUsersState } from "@/entities/User";
 import { PageLayout } from "@/shared/components/PageLayout";
 import { PageHeading } from "@/shared/components/PageHeading";
-// import { useDebouncedValue } from "@/shared/hooks/useDebouncedValue";
+import { useFilteredUsers } from "@/pages/UsersPage/useFilteredUsers";
 
 export const UsersPage = () => {
-  const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get("search");
-  const orderQuery = searchParams.get("order");
-
-  const [order, setOrder] = useState(orderQuery || "ASC");
-  const [username, setUsername] = useState(searchQuery || "");
-  // const debouncedQuery = useDebouncedValue(username, 500);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [order, setOrder] = useState(searchParams.get("order") || "ASC");
 
   const { users, isLoading, fetchUsers } = useUsersState();
+  const filteredUsers = useFilteredUsers(users, { search, order });
 
-  const handleSearchChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setUsername(value);
-    // update search param
-  }, []);
+  // TODO: Refactor handlers to eliminate the need to pass rest params in deps
+  const handleSearchChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      setSearch(value);
+      setSearchParams({ search: value, order });
+    },
+    [order],
+  );
 
-  const handleOrderChange = useCallback((option: string) => {
-    setOrder(option);
-    // update search param
-  }, []);
+  const handleOrderChange = useCallback(
+    (value: string) => {
+      setOrder(value);
+      setSearchParams({ search, order: value });
+    },
+    [search],
+  );
 
   useEffect(() => {
     fetchUsers();
@@ -35,12 +39,12 @@ export const UsersPage = () => {
     <PageLayout>
       <PageHeading>Users</PageHeading>
       <SearchUsers
-        searchValue={username}
+        searchValue={search}
         orderValue={order}
         onSearchChange={handleSearchChange}
         onOrderChange={handleOrderChange}
       />
-      <UsersTable users={users} isLoading={isLoading} />
+      <UsersTable users={filteredUsers} isLoading={isLoading} />
     </PageLayout>
   );
 };
