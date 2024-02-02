@@ -9,7 +9,7 @@ interface FilterParams {
 
 type UseFilteredUsers = (
   users: UserTableData[] | null,
-  { search, order }: FilterParams,
+  filters: FilterParams,
 ) => UserTableData[] | null;
 
 export const useFilteredUsers: UseFilteredUsers = (
@@ -18,10 +18,10 @@ export const useFilteredUsers: UseFilteredUsers = (
 ) => {
   return useMemo(() => {
     if (users) {
-      let filteredUsers = users;
+      let filteredUsers = [...users];
 
       if (search.trim() !== "") {
-        filteredUsers = users.filter((user) =>
+        filteredUsers = filteredUsers.filter((user) =>
           user.username.toLowerCase().startsWith(search.toLowerCase()),
         );
       }
@@ -36,5 +36,5 @@ export const useFilteredUsers: UseFilteredUsers = (
     }
 
     return null;
-  }, [users, order, search]);
+  }, [users, search, order]);
 };

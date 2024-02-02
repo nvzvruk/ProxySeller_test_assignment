@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 interface AppLinkProps {
@@ -6,7 +6,7 @@ interface AppLinkProps {
   children: ReactNode;
 }
 
-export const AppLink: React.FC<AppLinkProps> = ({ children, path }) => {
+export const AppLink = memo<AppLinkProps>(({ children, path }) => {
   return (
     <Link
       to={path}
@@ -15,4 +15,4 @@ export const AppLink: React.FC<AppLinkProps> = ({ children, path }) => {
       {children}
     </Link>
   );
-};
+});
