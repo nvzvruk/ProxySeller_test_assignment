@@ -4,14 +4,20 @@
 npm install
 ```
 
+## Lint
+
+```sh
+npm run lint
+```
+
 ## Run dev server
 
 ```sh
 npm run dev
 ```
 
-## Lint
+## Build
 
 ```sh
-npm run lint
+npm run build
 ```

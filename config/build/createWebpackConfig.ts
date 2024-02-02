@@ -18,9 +18,10 @@ export function createWebpackConfig({
     devServer: buildDevServer(port),
     module: { rules: buildLoaders(mode, paths) },
     output: {
-      filename: "[name].bundle.js",
+      filename: "[contenthash].js",
       path: paths.output,
-      publicPath: "/",
+      publicPath: "",
+      clean: true,
     },
   };
 }
